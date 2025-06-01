@@ -22,6 +22,3 @@ A Chrome extension that detects Amazon affiliate links on web pages and opens th
 - `content.js`: Detects affiliate links and handles clicks.
 - `styles.css`: Styles for borders and tooltips.
 - `background.js`: Opens incognito windows.
-
-## License
-MIT License
