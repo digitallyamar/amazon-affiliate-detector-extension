@@ -39,7 +39,7 @@ function processLinks() {
       });
       link.addEventListener('mouseout', () => {
         const tooltip = link.dataset.tooltipId
-          ? document.getElementById(link.dataset.tooltipId)
+          ? document.getElementById(element.dataset.tooltipId)
           : null;
         if (tooltip) tooltip.remove();
       });
@@ -81,3 +81,13 @@ const observer = new MutationObserver((mutations) => {
   }
 });
 observer.observe(document.body, { childList: true, subtree: true });
+
+// Handle clicks to open affiliate links in incognito mode
+document.addEventListener('click', (e) => {
+  const link = e.target.closest('a');
+  if (link && link.href && isAmazonAffiliateLink(link.href)) {
+    console.log('Affiliate link clicked:', link.href);
+    e.preventDefault();
+    chrome.runtime.sendMessage({ url: link.href });
+  }
+});
